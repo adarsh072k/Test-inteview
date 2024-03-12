@@ -3,6 +3,7 @@ import { FaArrowRightLong, FaDiscord } from "react-icons/fa6";
 import gsap from 'gsap';
 import React, { useEffect, useRef } from 'react';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { motion, useAnimation } from "framer-motion";
 
 
 gsap.registerPlugin(MotionPathPlugin);
@@ -112,19 +113,42 @@ export default function Home() {
     });
   }, []);
   
+  const parentControls2 = useAnimation();
+  const childControls2 = useAnimation();
+
+  useEffect(() => {
+    parentControls2.start({
+      rotate: [0, 360],
+      transition: {
+        duration: 10,
+        repeat: Infinity,
+        ease: "linear",
+      },
+    });
+
+    childControls2.start({
+      transition: {
+        duration: 10,
+        repeat: Infinity,
+        ease: "linear",
+      },
+    });
+  }, []);
   
   return (
     <main className="hero-container flex justify-center items-center  w-screen h-screen box-border ">
       <div class="radial-gradient h-screen w-screen rounded-full top-[-40%] absolute z-[-1] "></div>
 
       {/*first circle */}
-      <div className="absolute" 
-          style={{width: "75%", height: "100%"}}
+      <div className="absolute z-auto " 
+          style={{width: "75.6%", height: "100%"}}
           ref={parentRef2}>
           <div
-            className="element-3 w-5 h-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[10] rounded-full max-md:hidden"
+            className="element-4 w-4 h-4  rounded-full"
+            style={{ width: "20px", height: "20px"}}
              ref={childRef2}/>
       </div>
+
 
         {/* Middle circle - 1 */}
         <div className="absolute z-[-1]" 
@@ -135,11 +159,11 @@ export default function Home() {
              ref={childRef3}/>
         </div>
 
-      <div className="big-ellipse flex justify-between items-center w-[90vw] h-[90vw] rounded-full box-border relative overflow-hidden px-10 max-xl:w-[95vw] max-xl:h-[95vw] max-lg:w-[100vw] max-lg:h-[100vw] max-lg:gap-x-4 max-md:w-[90vw] max-md:h-[90vw] max-md:gap-x-4 max-md:flex-row  max-md:justify-center max-md:overflow-visible max-sm:w-full max-sm:px-4">
+      <div className="big-ellipse flex justify-between  items-center w-[90vw] h-[90vw] rounded-full box-border relative overflow-hidden px-10 max-xl:w-[95vw] max-xl:h-[95vw] max-lg:w-[100vw] max-lg:h-[100vw] max-lg:gap-x-4  max-md:flex-col-reverse max-md:justify-center max-md:overflow-visible max-sm:px-4">
 
         {/* Left container*/}
         <div className="details max-w-[480px] max-lg:w-[100%] max-md:mr-auto" style={{transform: 'translateY(30px) translateZ(0)' }}>
-        <h2 class="text-[#0FEAB6] text1">UI ASTRA Framework    v1.0</h2>
+          <h2 class="text-[#0FEAB6] text1">UI ASTRA Framework    v1.0</h2>
           <h1 className="text-black text-5xl font-semibold mt-4 max-md:text-4xl">Design faster, better & beautiful.</h1>
           <p className=" text-lg text-[#70808F] mt-3 mb-4" style={{ whiteSpace: 'nowrap' }}>Discover UI ASTRA - your one-stop hub for design system resources.</p>
           <div className="flex justify-items-start gap-x-3 mt-6">
@@ -163,12 +187,12 @@ export default function Home() {
         </div>
 
         {/* Right container*/}
-        <div className="small-ellipse flex justify-center items-center w-[55vw] h-[55vw] max-w-[550px] max-h-[550px] rounded-full relative max-sm:w-[300px] max-sm:h-[300px] max-sm:mr-auto " style={{transform: 'translateY(30px) translateZ(0)' }}>
+        <div className="small-ellipse aspect-square bg-gray-100 border-[3px] border-white flex justify-center items-center w-[55vw] h-[55vw] max-w-[550px] max-h-[550px] rounded-full relative max-sm:w-[300px] max-sm:h-[300px] max-sm:mr-auto" style={{transform: 'translateY(30px) translateZ(0)' }}>
           <img src="/3Dblock.webp" alt="Hero Image" className="w-[80%] h-[80%] object-contain" />
           <img
             src="/star.svg"
             alt="Star"
-            className="star absolute top-[59px] right-[67px] w-8 h-8"
+            className="star absolute top-[20%] right-[5%] w-8 h-8"
           />
 
           {/*Inner orbital circle*/}
